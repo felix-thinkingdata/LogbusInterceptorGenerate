@@ -1,12 +1,16 @@
 package cn.thinkingdata.generate.code.domain;
 
+import lombok.Data;
+
+@Data
 public class EntryDO {
 
+
+    private Integer index;
     // 列名
     private String columnName;
     // 列名类型
     private String dataType;
-
 
     // 属性名称(第一个字母大写)，如：user_name => UserName
     private String attrName;
