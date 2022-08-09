@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="PlayerHead" filter="1" version="1" desc="角色公共头部">
+    <entry name="GameAppId" type="string" size="32" desc="游戏的appid，用来区分不同的项目"/>
+    <entry name="VOpenID" type="string" size="64" desc="用户唯一编码，腾讯sdk生成"/>
+    <entry name="AccountCreateTime" type="string" size="32" desc="sdk账号首次创建时间"/>
+    <entry name="AccountRegTime" type="string" size="32" desc="sdk账号生成后在游戏侧首次完"/>
+    <entry name="ServerType" type="string" size="32" desc="服务器类型"/>
+    <entry name="IZoneAreaId" type="string" size="32" desc="创建角色时的服务器id"/>
+    <entry name="GameSvrId" type="string" size="32" desc="当前所处的服务器id"/>
+    <entry name="NowCoordinate" type="string" size="32" desc="当前主堡所处的地图坐标"/>
+    <entry name="VRoleId" type="string" size="64" desc="角色id，每个角色独有"/>
+    <entry name="VRoleName" type="string" size="32" desc="sdk账号首次创建时间"/>
+    <entry name="RoleNum" type="int32" desc="该账号下的第几个角色"/>
+    <entry name="RoleType" type="string" size="32" desc="角色类型"/>
+    <entry name="RoleCreateTime" type="string" size="32" desc="角色创建时间"/>
+    <entry name="ILevel" type="int32" desc="主堡等级"/>
+    <entry name="IVipLevel" type="int32" desc="vip等级"/>
+    <entry name="IRoleCe" type="int32" desc="角色战力"/>
+    <entry name="HighestRolePower" type="int32" desc="历史最高战力"/>
+    <entry name="PlayerFriendsNum" type="int32" desc="玩家好友数量"/>
+    <entry name="RechargeSum" type="string" size="32" desc="角色id，历史付费金额"/>
+    <entry name="IGuildId" type="int32" desc="所处联盟id"/>
+    <entry name="VGuildName" type="string" size="32" desc="联盟名称"/>
+    <entry name="GuildGrade" type="string" size="32" desc="联盟职位"/>
+    <entry name="GuildClass" type="string" size="32" desc="联盟职级"/>
+    <entry name="PlatId" type="int32" desc="操作系统"/>
+    <entry name="GameLanguage" type="string" size="32" desc="游戏语言"/>
+    <entry name="VClientId" type="string" size="32" desc="客户端IP"/>
+    <entry name="VClientIpv6" type="string" size="32" desc="客户端IPV6地址"/>
+    <entry name="KillNum" type="string" size="64" desc="设备id"/>
+    <entry name="ClientVersion" type="string" size="32" desc="客户端版本"/>
+    <entry name="MoneyConfig" type="int32" desc="当前充值货币余量"/>
+    <entry name="TransferOrNot" type="int32" desc="是否为转服玩家"/>
+</struct>

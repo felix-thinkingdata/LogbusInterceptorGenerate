@@ -1,6 +1,6 @@
 package cn.thinkingdata.generate.code.domain;
 
-public class EntryDo {
+public class EntryDO {
 
     // 列名
     private String columnName;

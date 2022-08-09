@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="ServerHead" filter="1" version="1" desc="服务器公共头部">
+    <entry name="ServerType" type="string" size="32" desc="服务器类型"/>
+    <entry name="IZoneAreaId" type="string" size="32" desc="服务器id"/>
+    <entry name="ServerOpenTime" type="datetime" desc="服务器开放时间"/>
+    <entry name="ServerOpenTimeFar" type="int64" desc="开服小时数"/>
+    <entry name="ServerOnline" type="int32" desc="服务器在线人数"/>
+    <entry name="ServerCondition" type="string" size="32" desc="服务器状态"/>
+    <entry name="ServerMilestoneStage" type="string" size="32" desc="服务器里程碑任务阶段"/>
+</struct>

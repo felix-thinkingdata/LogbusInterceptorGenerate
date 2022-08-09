@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="ClanHead" filter="1" version="1" desc="联盟公共头部字段">
+    <entry name="ServerType" type="string" size="32" desc="服务器类型"/>
+    <entry name="IZoneAreaId" type="string" size="32" desc="联盟所处的服务器id"/>
+    <entry name="GuildCreateTime" type="string" size="32" desc="联盟首次创建时间"/>
+    <entry name="GuildId" type="string" size="32" desc="联盟id"/>
+    <entry name="GuildName" type="string" size="32" desc="联盟名字"/>
+    <entry name="GuildShortName" type="string" size="32" desc="联盟简称"/>
+    <entry name="GuildLevel" type="int32" desc="联盟等级"/>
+    <entry name="GuildPopulation" type="int32" desc="联盟人数"/>
+    <entry name="GuildOnline" type="int32" desc="联盟在线人数"/>
+    <entry name="GuildGiftLevel" type="int32" desc="联盟礼物等级"/>
+    <entry name="GuildPower" type="int64" desc="联盟总战力"/>
+    <entry name="GuildInfluence" type="int64" desc="联盟总势力"/>
+    <entry name="GuildLeaderId" type="string" size="32" desc="联盟盟主id"/>
+</struct>

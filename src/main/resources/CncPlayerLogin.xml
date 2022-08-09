@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="CncPlayerLogin" filter="1" version="1" desc="登录日志">3
+    <entry name="PlayerHead" type="PlayerHead" extendtotable="true"/>
+    <entry name="DtEventTime" type="string" size="32" desc="游戏世界的时间"/>
+    <entry name="SystemSoftware" type="string" size="32" desc="移动终端操作系统版本"/>
+    <entry name="SystemHardware" type="string" size="32" desc="移动终端机型"/>
+    <entry name="Memory" type="int32" desc="内存信息单位M"/>
+    <entry name="GlVersion" type="string" size="32" desc="opengl版本信息"/>
+    <entry name="DeviceId" type="string" size="64" desc="设备ID"/>
+    <entry name="AccountName" type="string" size="32" desc="账号名"/>
+</struct>
