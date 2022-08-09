@@ -4,6 +4,7 @@ import cn.thinkingdata.generate.code.domain.EntryDO;
 import cn.thinkingdata.generate.code.domain.StructDO;
 import cn.thinkingdata.generate.code.service.XMLMetaService;
 import cn.thinkingdata.generate.utils.CommonUtil;
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -18,13 +19,11 @@ import java.util.Map;
 public class GenUtils {
     public static void main(String[] args) throws DocumentException {
         XMLMetaService xmlMetaService = new XMLMetaService();
+        xmlMetaService.init();
 
-        LinkedList<EntryDO> ClanHead = xmlMetaService.getAllEntrys("ClanHead.xml");
-        LinkedList<EntryDO> PlayerHead = xmlMetaService.getAllEntrys("PlayerHead.xml");
-        LinkedList<EntryDO> ServerHead = xmlMetaService.getAllEntrys("ServerHead.xml");
         LinkedList<EntryDO> CncPlayerLogin = xmlMetaService.getAllEntrys("CncPlayerLogin.xml");
 
-
+        System.out.println(JSON.toJSONString(CncPlayerLogin));
        // GenUtils.generatorCode();
 
 

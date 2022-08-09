@@ -9,6 +9,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,11 @@ import java.util.List;
 public class XMLMetaService {
 
     private static int index = 0;
+
+    HashMap<String, LinkedList<EntryDO>> headMaps = new HashMap();
+    LinkedList<EntryDO> ClanHead;
+    LinkedList<EntryDO> PlayerHead;
+    LinkedList<EntryDO> ServerHead;
 
     public static void main(String[] args) throws DocumentException {
         new XMLMetaService().getAllEntrys("x");
@@ -27,6 +33,16 @@ public class XMLMetaService {
         return entryList;
     }
 
+    public void init() throws DocumentException {
+        ClanHead = getAllEntrys("ClanHead.xml");
+        PlayerHead = getAllEntrys("PlayerHead.xml");
+        ServerHead = getAllEntrys("ServerHead.xml");
+
+        headMaps.put("ClanHead", ClanHead);
+        headMaps.put("PlayerHead", PlayerHead);
+        headMaps.put("PlayerHead", PlayerHead);
+    }
+
     private void parserXml(String fileName, LinkedList<EntryDO> entryList) throws DocumentException {
 
         InputStream in = this.getClass().getClassLoader().getResourceAsStream(fileName);
@@ -35,7 +51,7 @@ public class XMLMetaService {
         Element root = doc.getRootElement();
         index = 0;
         readNode(root, entryList);
-        System.out.println(JSON.toJSONString(entryList));
+
 
 
     }
@@ -50,7 +66,7 @@ public class XMLMetaService {
         if (attrs != null && attrs.size() > 0) {
             if ("entry".equals(root.getName())) {
                 EntryDO entryDO = new EntryDO();
-                entryDO.setIndex(index);
+
 
                 for (Attribute attr : attrs) {
 
@@ -58,12 +74,19 @@ public class XMLMetaService {
                         entryDO.setColumnName(attr.getValue());
                     }
                     if ("type".equals(attr.getName())) {
-                        entryDO.setDataType(attr.getValue());
+                        LinkedList<EntryDO> headList = headMaps.get(attr.getValue());
+                        if (headList != null) {
+                            index = index + headList.size();
+                            entryList.addAll(headList);
+                        } else {
+                            entryDO.setDataType(attr.getValue());
+                            entryDO.setIndex(index);
+                            entryList.add(entryDO);
+                        }
+
                     }
                 }
-                entryList.add(entryDO);
             }
-
         }
 
         // 获取他的子节点
