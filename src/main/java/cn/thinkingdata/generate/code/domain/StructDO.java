@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 public class StructDO {
 
     //表的名称
@@ -16,4 +15,37 @@ public class StructDO {
     private String className;
     //类名(第一个字母小写)，如：sys_user => sysUser
     private String classname;
+
+
+    public String getStructName() {
+        return StructName;
+    }
+
+    public void setStructName(String structName) {
+        StructName = structName;
+    }
+
+    public List<EntryDO> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(List<EntryDO> columns) {
+        this.columns = columns;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 }

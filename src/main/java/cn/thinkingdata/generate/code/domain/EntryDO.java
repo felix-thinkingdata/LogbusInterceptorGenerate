@@ -2,7 +2,7 @@ package cn.thinkingdata.generate.code.domain;
 
 import lombok.Data;
 
-@Data
+
 public class EntryDO {
 
 
@@ -20,4 +20,60 @@ public class EntryDO {
     private String attrType;
 
     private Boolean structFlag;
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
+
+    public String getColumnName() {
+        return columnName;
+    }
+
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
+    }
+
+    public String getAttrName() {
+        return attrName;
+    }
+
+    public void setAttrName(String attrName) {
+        this.attrName = attrName;
+    }
+
+    public String getAttrname() {
+        return attrname;
+    }
+
+    public void setAttrname(String attrname) {
+        this.attrname = attrname;
+    }
+
+    public String getAttrType() {
+        return attrType;
+    }
+
+    public void setAttrType(String attrType) {
+        this.attrType = attrType;
+    }
+
+    public Boolean getStructFlag() {
+        return structFlag;
+    }
+
+    public void setStructFlag(Boolean structFlag) {
+        this.structFlag = structFlag;
+    }
 }
