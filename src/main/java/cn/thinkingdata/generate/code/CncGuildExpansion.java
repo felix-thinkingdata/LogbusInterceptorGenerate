@@ -228,7 +228,7 @@ public class CncGuildExpansion implements CustomInterceptor{
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncGuildExpansion"));
+            taDataDo.setEventName("CncGuildExpansion");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -243,7 +243,7 @@ public class CncGuildExpansion implements CustomInterceptor{
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncGuildExpansion"));
+            taDataDo.setEventName("CncGuildExpansion");
             taDataDo.setDistinctId("CncGuildExpansion");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
@@ -258,7 +258,7 @@ public class CncGuildExpansion implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "CncGuildExpansion|null|1|2022-08-08 10:21:55|32339155233|明星大乱 斗|SDN|0|2|0|0|64902048|10|32269952230|2022-08-08 11:02:24|10066|178000,112000|leave_defence_guild_building|32089647769";
+        String data = "";
         CncGuildExpansion xxx = new CncGuildExpansion();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

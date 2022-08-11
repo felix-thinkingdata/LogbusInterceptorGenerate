@@ -168,7 +168,7 @@ public class CncOnlineCnt implements CustomInterceptor{
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncOnlineCnt"));
+            taDataDo.setEventName("CncOnlineCnt");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -183,7 +183,7 @@ public class CncOnlineCnt implements CustomInterceptor{
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncOnlineCnt"));
+            taDataDo.setEventName("CncOnlineCnt");
             taDataDo.setDistinctId("CncOnlineCnt");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
@@ -198,7 +198,7 @@ public class CncOnlineCnt implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "CncOnlineCnt|null||2022-08-04 04:12:46|373889|0|xxx|xxx|2022-08-08 12:04:15||1659960255584|0|0";
+        String data = "";
         CncOnlineCnt xxx = new CncOnlineCnt();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

@@ -74,7 +74,7 @@ ${classname}.set${column.attrName}(split[${column.index}]);
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("${className}"));
+            taDataDo.setEventName("${className}");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -89,7 +89,7 @@ ${classname}.set${column.attrName}(split[${column.index}]);
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("${className}"));
+            taDataDo.setEventName("${className}");
             taDataDo.setDistinctId("${className}");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
