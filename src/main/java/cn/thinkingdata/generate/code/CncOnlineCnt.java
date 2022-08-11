@@ -4,377 +4,204 @@ import cn.thinkingdata.generate.utils.DateUtil;
 import cn.thinkingdata.ta.interceptor.CustomInterceptor;
 import cn.thinkingdata.ta.interceptor.data.TaDataDo;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class CncOnlineCnt  implements CustomInterceptor {
-    private  String  gameappid;
-    private  String  vopenid;
-    private  String  accountcreatetime;
-    private  String  accountregtime;
+import java.util.Date;
+
+/**
+ * @author felix
+ * @email felix@thinkingdata
+ */
+public class CncOnlineCnt implements CustomInterceptor{
+    private static final Logger logger = LoggerFactory.getLogger(CncOnlineCnt.class);
+
     private  String  servertype;
     private  String  izoneareaid;
-    private  String  gamesvrid;
-    private  String  nowcoordinate;
-    private  String  vroleid;
-    private  String  vrolename;
-    private  Integer  rolenum;
-    private  String  roletype;
-    private  String  rolecreatetime;
-    private  Integer  ilevel;
-    private  Integer  iviplevel;
-    private  Integer  irolece;
-    private  Integer  highestrolepower;
-    private  Integer  playerfriendsnum;
-    private  String  rechargesum;
-    private  Integer  iguildid;
-    private  String  vguildname;
-    private  String  guildgrade;
-    private  String  guildclass;
-    private  Integer  platid;
-    private  String  gamelanguage;
-    private  String  vclientid;
-    private  String  vclientipv6;
-    private  String  killnum;
-    private  String  clientversion;
-    private  Integer  moneyconfig;
-    private  Integer  transferornot;
+    private  Date  serveropentime;
+    private  Long  serveropentimefar;
+    private  Integer  serveronline;
+    private  String  servercondition;
+    private  String  servermilestonestage;
     private  String  dteventtime;
-    private  String  systemsoftware;
-    private  String  systemhardware;
-    private  Integer  memory;
-    private  String  glversion;
-    private  String  deviceid;
-    private  String  accountname;
+    private  String  vgameappid;
+    private  String  timekey;
+    private  Integer  onlinecntios;
+    private  Integer  onlinecntandroid;
 
 
-    public void setGameappid( String  gameappid) {
-        this.gameappid = gameappid;
+    public void setServertype( String  servertype){
+            this.servertype = servertype;
     }
 
-    public  String getGameappid() {
-        return gameappid;
+    public  String getServertype(){
+            return servertype;
     }
 
-    public void setVopenid( String  vopenid) {
-        this.vopenid = vopenid;
+    public void setIzoneareaid( String  izoneareaid){
+            this.izoneareaid = izoneareaid;
     }
 
-    public  String getVopenid() {
-        return vopenid;
+    public  String getIzoneareaid(){
+            return izoneareaid;
     }
 
-    public void setAccountcreatetime( String  accountcreatetime) {
-        this.accountcreatetime = accountcreatetime;
+    public void setServeropentime( Date  serveropentime){
+            this.serveropentime = serveropentime;
     }
 
-    public  String getAccountcreatetime() {
-        return accountcreatetime;
+    public  Date getServeropentime(){
+            return serveropentime;
     }
 
-    public void setAccountregtime( String  accountregtime) {
-        this.accountregtime = accountregtime;
+    public void setServeropentimefar( Long  serveropentimefar){
+            this.serveropentimefar = serveropentimefar;
     }
 
-    public  String getAccountregtime() {
-        return accountregtime;
+    public  Long getServeropentimefar(){
+            return serveropentimefar;
     }
 
-    public void setServertype( String  servertype) {
-        this.servertype = servertype;
+    public void setServeronline( Integer  serveronline){
+            this.serveronline = serveronline;
     }
 
-    public  String getServertype() {
-        return servertype;
+    public  Integer getServeronline(){
+            return serveronline;
     }
 
-    public void setIzoneareaid( String  izoneareaid) {
-        this.izoneareaid = izoneareaid;
+    public void setServercondition( String  servercondition){
+            this.servercondition = servercondition;
     }
 
-    public  String getIzoneareaid() {
-        return izoneareaid;
+    public  String getServercondition(){
+            return servercondition;
     }
 
-    public void setGamesvrid( String  gamesvrid) {
-        this.gamesvrid = gamesvrid;
+    public void setServermilestonestage( String  servermilestonestage){
+            this.servermilestonestage = servermilestonestage;
     }
 
-    public  String getGamesvrid() {
-        return gamesvrid;
+    public  String getServermilestonestage(){
+            return servermilestonestage;
     }
 
-    public void setNowcoordinate( String  nowcoordinate) {
-        this.nowcoordinate = nowcoordinate;
+    public void setDteventtime( String  dteventtime){
+            this.dteventtime = dteventtime;
     }
 
-    public  String getNowcoordinate() {
-        return nowcoordinate;
+    public  String getDteventtime(){
+            return dteventtime;
     }
 
-    public void setVroleid( String  vroleid) {
-        this.vroleid = vroleid;
+    public void setVgameappid( String  vgameappid){
+            this.vgameappid = vgameappid;
     }
 
-    public  String getVroleid() {
-        return vroleid;
+    public  String getVgameappid(){
+            return vgameappid;
     }
 
-    public void setVrolename( String  vrolename) {
-        this.vrolename = vrolename;
+    public void setTimekey( String  timekey){
+            this.timekey = timekey;
     }
 
-    public  String getVrolename() {
-        return vrolename;
+    public  String getTimekey(){
+            return timekey;
     }
 
-    public void setRolenum( Integer  rolenum) {
-        this.rolenum = rolenum;
+    public void setOnlinecntios( Integer  onlinecntios){
+            this.onlinecntios = onlinecntios;
     }
 
-    public  Integer getRolenum() {
-        return rolenum;
+    public  Integer getOnlinecntios(){
+            return onlinecntios;
     }
 
-    public void setRoletype( String  roletype) {
-        this.roletype = roletype;
+    public void setOnlinecntandroid( Integer  onlinecntandroid){
+            this.onlinecntandroid = onlinecntandroid;
     }
 
-    public  String getRoletype() {
-        return roletype;
+    public  Integer getOnlinecntandroid(){
+            return onlinecntandroid;
     }
 
-    public void setRolecreatetime( String  rolecreatetime) {
-        this.rolecreatetime = rolecreatetime;
-    }
-
-    public  String getRolecreatetime() {
-        return rolecreatetime;
-    }
-
-    public void setIlevel( Integer  ilevel) {
-        this.ilevel = ilevel;
-    }
-
-    public  Integer getIlevel() {
-        return ilevel;
-    }
-
-    public void setIviplevel( Integer  iviplevel) {
-        this.iviplevel = iviplevel;
-    }
-
-    public  Integer getIviplevel() {
-        return iviplevel;
-    }
-
-    public void setIrolece( Integer  irolece) {
-        this.irolece = irolece;
-    }
-
-    public  Integer getIrolece() {
-        return irolece;
-    }
-
-    public void setHighestrolepower( Integer  highestrolepower) {
-        this.highestrolepower = highestrolepower;
-    }
-
-    public  Integer getHighestrolepower() {
-        return highestrolepower;
-    }
-
-    public void setPlayerfriendsnum( Integer  playerfriendsnum) {
-        this.playerfriendsnum = playerfriendsnum;
-    }
-
-    public  Integer getPlayerfriendsnum() {
-        return playerfriendsnum;
-    }
-
-    public void setRechargesum( String  rechargesum) {
-        this.rechargesum = rechargesum;
-    }
-
-    public  String getRechargesum() {
-        return rechargesum;
-    }
-
-    public void setIguildid( Integer  iguildid) {
-        this.iguildid = iguildid;
-    }
-
-    public  Integer getIguildid() {
-        return iguildid;
-    }
-
-    public void setVguildname( String  vguildname) {
-        this.vguildname = vguildname;
-    }
-
-    public  String getVguildname() {
-        return vguildname;
-    }
-
-    public void setGuildgrade( String  guildgrade) {
-        this.guildgrade = guildgrade;
-    }
-
-    public  String getGuildgrade() {
-        return guildgrade;
-    }
-
-    public void setGuildclass( String  guildclass) {
-        this.guildclass = guildclass;
-    }
-
-    public  String getGuildclass() {
-        return guildclass;
-    }
-
-    public void setPlatid( Integer  platid) {
-        this.platid = platid;
-    }
-
-    public  Integer getPlatid() {
-        return platid;
-    }
-
-    public void setGamelanguage( String  gamelanguage) {
-        this.gamelanguage = gamelanguage;
-    }
-
-    public  String getGamelanguage() {
-        return gamelanguage;
-    }
 
-    public void setVclientid( String  vclientid) {
-        this.vclientid = vclientid;
-    }
-
-    public  String getVclientid() {
-        return vclientid;
-    }
-
-    public void setVclientipv6( String  vclientipv6) {
-        this.vclientipv6 = vclientipv6;
-    }
-
-    public  String getVclientipv6() {
-        return vclientipv6;
-    }
-
-    public void setKillnum( String  killnum) {
-        this.killnum = killnum;
-    }
-
-    public  String getKillnum() {
-        return killnum;
-    }
-
-    public void setClientversion( String  clientversion) {
-        this.clientversion = clientversion;
-    }
-
-    public  String getClientversion() {
-        return clientversion;
-    }
-
-    public void setMoneyconfig( Integer  moneyconfig) {
-        this.moneyconfig = moneyconfig;
-    }
-
-    public  Integer getMoneyconfig() {
-        return moneyconfig;
-    }
-
-    public void setTransferornot( Integer  transferornot) {
-        this.transferornot = transferornot;
-    }
-
-    public  Integer getTransferornot() {
-        return transferornot;
-    }
-
-    public void setDteventtime( String  dteventtime) {
-        this.dteventtime = dteventtime;
-    }
-
-    public  String getDteventtime() {
-        return dteventtime;
-    }
-
-    public void setSystemsoftware( String  systemsoftware) {
-        this.systemsoftware = systemsoftware;
-    }
-
-    public  String getSystemsoftware() {
-        return systemsoftware;
-    }
-
-    public void setSystemhardware( String  systemhardware) {
-        this.systemhardware = systemhardware;
-    }
-
-    public  String getSystemhardware() {
-        return systemhardware;
-    }
-
-    public void setMemory( Integer  memory) {
-        this.memory = memory;
-    }
-
-    public  Integer getMemory() {
-        return memory;
-    }
-
-    public void setGlversion( String  glversion) {
-        this.glversion = glversion;
-    }
-
-    public  String getGlversion() {
-        return glversion;
-    }
-
-    public void setDeviceid( String  deviceid) {
-        this.deviceid = deviceid;
-    }
-
-    public  String getDeviceid() {
-        return deviceid;
-    }
-
-    public void setAccountname( String  accountname) {
-        this.accountname = accountname;
-    }
-
-    public  String getAccountname() {
-        return accountname;
-    }
     @Override
-    public TaDataDo transFrom(String s, String s1) {
+    public TaDataDo transFrom(String s,String s1) {
+        s = s.substring(s.indexOf("|")+1);
+        if (s.endsWith("|")) {
+            s = s+" ";
+        }
         String[] split = s.split("\\|");
-        TaDataDo taDataDo = new TaDataDo();
         //parse
         CncOnlineCnt cncOnlineCnt = new CncOnlineCnt();
-//        cncOnlineCnt.setServerType(split[0]);
-//        cncOnlineCnt.setIZoneAreaId(split[1]);
-//        cncOnlineCnt.setServerOpenTime(DateUtil.parseDateString(split[2]));
-//        cncOnlineCnt.setServerOpenTimeFar(Long.valueOf(split[3]));
-//        cncOnlineCnt.setServerOnline(Long.valueOf(split[4]));
-//        cncOnlineCnt.setServerCondition(split[5]);
-//        cncOnlineCnt.setServerMilestoneStage(split[6]);
-//
-//        cncOnlineCnt.setDtEventTime(split[7]);
-//        cncOnlineCnt.setVGameAppid(split[8]);
-//        cncOnlineCnt.setTimeKey(split[9]);
-//        cncOnlineCnt.setOnlinecntIos(split[10]);
-//        cncOnlineCnt.setOnlinecntAndroid(Long.valueOf(split[11]));
-//
-//        taDataDo.setAccountId(cncOnlineCnt.getOnlinecntAndroid());
-//        taDataDo.setTime(DateUtil.parseDateString(cncOnlineCnt.getDtEventTime()));
-//        taDataDo.setEventName("CncOnlineCnt");
-//        taDataDo.setPropertyObj(JSON.parseObject(JSON.toJSONString(cncOnlineCnt)));
+        cncOnlineCnt.setServertype(split[0]);
+        cncOnlineCnt.setIzoneareaid(split[1]);
+        cncOnlineCnt.setServeropentime(DateUtil.parseDateString(split[2]));
+        cncOnlineCnt.setServeropentimefar(Long.valueOf(split[3]));
+        cncOnlineCnt.setServeronline(Integer.valueOf(split[4]));
+        cncOnlineCnt.setServercondition(split[5]);
+        cncOnlineCnt.setServermilestonestage(split[6]);
+        cncOnlineCnt.setDteventtime(split[7]);
+        cncOnlineCnt.setVgameappid(split[8]);
+        cncOnlineCnt.setTimekey(split[9]);
+        cncOnlineCnt.setOnlinecntios(Integer.valueOf(split[10]));
+        cncOnlineCnt.setOnlinecntandroid(Integer.valueOf(split[11]));
+        
+        TaDataDo taDataDo = new TaDataDo();
+        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncOnlineCnt));
+        taDataDo.setPropertyObj(propertyObj);
+
+        if (CncOnlineCnt.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
+            taDataDo.setType("user_set");
+            if(propertyObj.containsKey("VOpenID".toLowerCase())){
+                taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
+            }
+            if(propertyObj.containsKey("VRoleId".toLowerCase())){
+                taDataDo.setAccountId(propertyObj.getString("VRoleId".toLowerCase()));
+            }
+            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
+                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
+            }
+        } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
+            taDataDo.setType("track");
+            taDataDo.setEventName(propertyObj.getString("CncOnlineCnt"));
+            if(propertyObj.containsKey("VOpenID".toLowerCase())){
+                taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
+            }
+            if(propertyObj.containsKey("VRoleId".toLowerCase())){
+                taDataDo.setAccountId(propertyObj.getString("VRoleId".toLowerCase()));
+            }
+            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
+                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
+            }
+            if(propertyObj.containsKey("VClientId".toLowerCase())){
+                taDataDo.setIp(propertyObj.getString("VClientId".toLowerCase()));
+            }
+        } else {
+            taDataDo.setType("track");
+            taDataDo.setEventName(propertyObj.getString("CncOnlineCnt"));
+            taDataDo.setDistinctId("CncOnlineCnt");
+            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
+                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
+            } else {
+                taDataDo.setTime(new Date());
+            }
+        }
+
         return taDataDo;
+
     }
 
+    public static void main(String[] args) {
+        //事件测试数据
+        String data = "CncOnlineCnt|null||2022-08-04 04:12:46|373889|0|xxx|xxx|2022-08-08 12:04:15||1659960255584|0|0";
+        CncOnlineCnt xxx = new CncOnlineCnt();
+        TaDataDo taDataDo =  xxx.transFrom(data,"");
+        System.out.println(JSON.toJSONString(taDataDo));
+    }
 
 }

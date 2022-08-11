@@ -15,8 +15,8 @@ import java.util.Date;
  * @author felix
  * @email felix@thinkingdata
  */
-public class CncPlayerLogin implements CustomInterceptor{
-    private static final Logger logger = LoggerFactory.getLogger(CncPlayerLogin.class);
+public class UserSnapshot implements CustomInterceptor{
+    private static final Logger logger = LoggerFactory.getLogger(UserSnapshot.class);
 
     private  String  gameappid;
     private  String  vopenid;
@@ -52,8 +52,6 @@ public class CncPlayerLogin implements CustomInterceptor{
     private  String  dteventtime;
     private  String  systemsoftware;
     private  String  systemhardware;
-    private  Integer  memory;
-    private  String  glversion;
     private  String  deviceid;
     private  String  accountname;
 
@@ -330,22 +328,6 @@ public class CncPlayerLogin implements CustomInterceptor{
             return systemhardware;
     }
 
-    public void setMemory( Integer  memory){
-            this.memory = memory;
-    }
-
-    public  Integer getMemory(){
-            return memory;
-    }
-
-    public void setGlversion( String  glversion){
-            this.glversion = glversion;
-    }
-
-    public  String getGlversion(){
-            return glversion;
-    }
-
     public void setDeviceid( String  deviceid){
             this.deviceid = deviceid;
     }
@@ -371,51 +353,49 @@ public class CncPlayerLogin implements CustomInterceptor{
         }
         String[] split = s.split("\\|");
         //parse
-        CncPlayerLogin cncPlayerLogin = new CncPlayerLogin();
-        cncPlayerLogin.setGameappid(split[0]);
-        cncPlayerLogin.setVopenid(split[1]);
-        cncPlayerLogin.setAccountcreatetime(split[2]);
-        cncPlayerLogin.setAccountregtime(split[3]);
-        cncPlayerLogin.setServertype(split[4]);
-        cncPlayerLogin.setIzoneareaid(split[5]);
-        cncPlayerLogin.setGamesvrid(split[6]);
-        cncPlayerLogin.setNowcoordinate(split[7]);
-        cncPlayerLogin.setVroleid(split[8]);
-        cncPlayerLogin.setVrolename(split[9]);
-        cncPlayerLogin.setRolenum(Integer.valueOf(split[10]));
-        cncPlayerLogin.setRoletype(split[11]);
-        cncPlayerLogin.setRolecreatetime(split[12]);
-        cncPlayerLogin.setIlevel(Integer.valueOf(split[13]));
-        cncPlayerLogin.setIviplevel(Integer.valueOf(split[14]));
-        cncPlayerLogin.setIrolece(Integer.valueOf(split[15]));
-        cncPlayerLogin.setHighestrolepower(Integer.valueOf(split[16]));
-        cncPlayerLogin.setPlayerfriendsnum(Integer.valueOf(split[17]));
-        cncPlayerLogin.setRechargesum(split[18]);
-        cncPlayerLogin.setIguildid(Integer.valueOf(split[19]));
-        cncPlayerLogin.setVguildname(split[20]);
-        cncPlayerLogin.setGuildgrade(split[21]);
-        cncPlayerLogin.setGuildclass(split[22]);
-        cncPlayerLogin.setPlatid(Integer.valueOf(split[23]));
-        cncPlayerLogin.setGamelanguage(split[24]);
-        cncPlayerLogin.setVclientid(split[25]);
-        cncPlayerLogin.setVclientipv6(split[26]);
-        cncPlayerLogin.setKillnum(split[27]);
-        cncPlayerLogin.setClientversion(split[28]);
-        cncPlayerLogin.setMoneyconfig(Integer.valueOf(split[29]));
-        cncPlayerLogin.setTransferornot(Integer.valueOf(split[30]));
-        cncPlayerLogin.setDteventtime(split[31]);
-        cncPlayerLogin.setSystemsoftware(split[32]);
-        cncPlayerLogin.setSystemhardware(split[33]);
-        cncPlayerLogin.setMemory(Integer.valueOf(split[34]));
-        cncPlayerLogin.setGlversion(split[35]);
-        cncPlayerLogin.setDeviceid(split[36]);
-        cncPlayerLogin.setAccountname(split[37]);
+        UserSnapshot userSnapshot = new UserSnapshot();
+        userSnapshot.setGameappid(split[0]);
+        userSnapshot.setVopenid(split[1]);
+        userSnapshot.setAccountcreatetime(split[2]);
+        userSnapshot.setAccountregtime(split[3]);
+        userSnapshot.setServertype(split[4]);
+        userSnapshot.setIzoneareaid(split[5]);
+        userSnapshot.setGamesvrid(split[6]);
+        userSnapshot.setNowcoordinate(split[7]);
+        userSnapshot.setVroleid(split[8]);
+        userSnapshot.setVrolename(split[9]);
+        userSnapshot.setRolenum(Integer.valueOf(split[10]));
+        userSnapshot.setRoletype(split[11]);
+        userSnapshot.setRolecreatetime(split[12]);
+        userSnapshot.setIlevel(Integer.valueOf(split[13]));
+        userSnapshot.setIviplevel(Integer.valueOf(split[14]));
+        userSnapshot.setIrolece(Integer.valueOf(split[15]));
+        userSnapshot.setHighestrolepower(Integer.valueOf(split[16]));
+        userSnapshot.setPlayerfriendsnum(Integer.valueOf(split[17]));
+        userSnapshot.setRechargesum(split[18]);
+        userSnapshot.setIguildid(Integer.valueOf(split[19]));
+        userSnapshot.setVguildname(split[20]);
+        userSnapshot.setGuildgrade(split[21]);
+        userSnapshot.setGuildclass(split[22]);
+        userSnapshot.setPlatid(Integer.valueOf(split[23]));
+        userSnapshot.setGamelanguage(split[24]);
+        userSnapshot.setVclientid(split[25]);
+        userSnapshot.setVclientipv6(split[26]);
+        userSnapshot.setKillnum(split[27]);
+        userSnapshot.setClientversion(split[28]);
+        userSnapshot.setMoneyconfig(Integer.valueOf(split[29]));
+        userSnapshot.setTransferornot(Integer.valueOf(split[30]));
+        userSnapshot.setDteventtime(split[31]);
+        userSnapshot.setSystemsoftware(split[32]);
+        userSnapshot.setSystemhardware(split[33]);
+        userSnapshot.setDeviceid(split[34]);
+        userSnapshot.setAccountname(split[35]);
         
         TaDataDo taDataDo = new TaDataDo();
-        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncPlayerLogin));
+        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(userSnapshot));
         taDataDo.setPropertyObj(propertyObj);
 
-        if (CncPlayerLogin.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
+        if (UserSnapshot.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
             taDataDo.setType("user_set");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
@@ -428,7 +408,7 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
+            taDataDo.setEventName(propertyObj.getString("UserSnapshot"));
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -443,8 +423,8 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
-            taDataDo.setDistinctId("CncPlayerLogin");
+            taDataDo.setEventName(propertyObj.getString("UserSnapshot"));
+            taDataDo.setDistinctId("UserSnapshot");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
             } else {
@@ -458,8 +438,8 @@ public class CncPlayerLogin implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "CncPlayerLogin||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander_L szSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:11|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|65249|3001|b064267bb37b28b4093b59ccc98873aea972a3d2|james";
-        CncPlayerLogin xxx = new CncPlayerLogin();
+        String data = "UserSnapshot||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander _LszSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:42|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|b064267bb37b28b4093b59ccc98873aea972a3d2|james";
+        UserSnapshot xxx = new UserSnapshot();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
     }

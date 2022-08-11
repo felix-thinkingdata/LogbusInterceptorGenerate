@@ -1,7 +1,6 @@
 package cn.thinkingdata.generate.code.service;
 
 import cn.thinkingdata.generate.code.domain.EntryDO;
-import com.alibaba.fastjson.JSON;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -10,7 +9,6 @@ import org.dom4j.io.SAXReader;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,24 +21,20 @@ public class XMLMetaService {
     LinkedList<EntryDO> PlayerHead;
     LinkedList<EntryDO> ServerHead;
 
-    public static void main(String[] args) throws DocumentException {
-        new XMLMetaService().getAllEntrys("x");
-    }
-
-    public LinkedList<EntryDO> getAllEntrys(String structName) throws DocumentException {
+    public LinkedList<EntryDO> getAllEntries(String structName) throws DocumentException {
         LinkedList<EntryDO> entryList = new LinkedList<EntryDO>();
         parserXml(structName, entryList);
         return entryList;
     }
 
     public void init() throws DocumentException {
-        ClanHead = getAllEntrys("ClanHead.xml");
-        PlayerHead = getAllEntrys("PlayerHead.xml");
-        ServerHead = getAllEntrys("ServerHead.xml");
+        ClanHead = getAllEntries("head/ClanHead.xml");
+        PlayerHead = getAllEntries("head/PlayerHead.xml");
+        ServerHead = getAllEntries("head/ServerHead.xml");
 
         headMaps.put("ClanHead", ClanHead);
         headMaps.put("PlayerHead", PlayerHead);
-        headMaps.put("PlayerHead", PlayerHead);
+        headMaps.put("ServerHead", ServerHead);
     }
 
     private void parserXml(String fileName, LinkedList<EntryDO> entryList) throws DocumentException {
@@ -51,8 +45,6 @@ public class XMLMetaService {
         Element root = doc.getRootElement();
         index = 0;
         readNode(root, entryList);
-
-
 
     }
 
@@ -66,24 +58,20 @@ public class XMLMetaService {
         if (attrs != null && attrs.size() > 0) {
             if ("entry".equals(root.getName())) {
                 EntryDO entryDO = new EntryDO();
-
-
                 for (Attribute attr : attrs) {
-
                     if ("name".equals(attr.getName())) {
                         entryDO.setColumnName(attr.getValue());
                     }
                     if ("type".equals(attr.getName())) {
                         LinkedList<EntryDO> headList = headMaps.get(attr.getValue());
                         if (headList != null) {
-                            index = index + headList.size();
+                            index = index + headList.size() - 1;
                             entryList.addAll(headList);
                         } else {
                             entryDO.setDataType(attr.getValue());
                             entryDO.setIndex(index);
                             entryList.add(entryDO);
                         }
-
                     }
                 }
             }

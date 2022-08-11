@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="CncGuildExpansion" filter="1" version="1" desc="领土扩张日志">
+    <entry name="ClanHead" type="ClanHead" extendtotable="true"/>
+    <entry name="DtEventTime" type="string" size="32" desc="行为时间"/>
+    <entry name="BuildingId" type="int32" size="32" desc="建筑片id"/>
+    <entry name="BuildingCoordinate" type="string" size="32" desc="建筑坐标"/>
+    <entry name="Action" type="string" size="64" desc="行为"/>
+    <entry name="OptionRoleId" type="int64" desc="操作者id"/>
+</struct>

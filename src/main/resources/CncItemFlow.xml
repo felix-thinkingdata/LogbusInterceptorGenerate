@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="CncItemFlow" filter="1" version="1" desc="道具流水">
+    <entry name="PlayerHead" type="PlayerHead" extendtotable="true"/>
+    <entry name="DtEventTime" type="string" size="32" desc="行为发生时间"/>
+    <entry name="IGoodsId" type="string" size="32" desc="发生变化的道具id"/>
+    <entry name="BeforeCount" type="int64" desc="道具发生变化前的数量"/>
+    <entry name="AfterCount" type="int64" desc="发生变化后的数量"/>
+    <entry name="ICount" type="int64" desc="道具改变的数量"/>
+    <entry name="AddOrReduce" type="int32" desc="道具变化的类型(0:道具增加,1:道具减少)"/>
+    <entry name="Reason" type="string" size="32" desc="道具变化的一级原因"/>
+    <entry name="SubReason" type="string" size="32" desc="道具变化的二级原因"/>
+</struct>

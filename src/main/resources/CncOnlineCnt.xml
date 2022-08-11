@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struct name="CncOnlineCnt" filter="1" version="1" desc="系统玩家在线日志">
+    <entry name="ServerHead" type="ServerHead" extendtotable="true"/>
+    <entry name="DtEventTime" type="string" size="32" desc="事件时间"/>
+    <entry name="VGameAppid" type="string" size="32" desc="游戏APPID，用来区分不同项目"/>
+    <entry name="TimeKey" type="string" size="64" desc="当前时间的时间戳，即当前的 unixtime"/>
+    <entry name="OnlinecntIos" type="int32" desc="ios在线人数"/>
+    <entry name="OnlinecntAndroid" type="int32" desc="android在线人数"/>
+</struct>

@@ -15,8 +15,8 @@ import java.util.Date;
  * @author felix
  * @email felix@thinkingdata
  */
-public class CncPlayerLogin implements CustomInterceptor{
-    private static final Logger logger = LoggerFactory.getLogger(CncPlayerLogin.class);
+public class CncItemFlow implements CustomInterceptor{
+    private static final Logger logger = LoggerFactory.getLogger(CncItemFlow.class);
 
     private  String  gameappid;
     private  String  vopenid;
@@ -50,12 +50,13 @@ public class CncPlayerLogin implements CustomInterceptor{
     private  Integer  moneyconfig;
     private  Integer  transferornot;
     private  String  dteventtime;
-    private  String  systemsoftware;
-    private  String  systemhardware;
-    private  Integer  memory;
-    private  String  glversion;
-    private  String  deviceid;
-    private  String  accountname;
+    private  String  igoodsid;
+    private  Long  beforecount;
+    private  Long  aftercount;
+    private  Long  icount;
+    private  Integer  addorreduce;
+    private  String  reason;
+    private  String  subreason;
 
 
     public void setGameappid( String  gameappid){
@@ -314,52 +315,60 @@ public class CncPlayerLogin implements CustomInterceptor{
             return dteventtime;
     }
 
-    public void setSystemsoftware( String  systemsoftware){
-            this.systemsoftware = systemsoftware;
+    public void setIgoodsid( String  igoodsid){
+            this.igoodsid = igoodsid;
     }
 
-    public  String getSystemsoftware(){
-            return systemsoftware;
+    public  String getIgoodsid(){
+            return igoodsid;
     }
 
-    public void setSystemhardware( String  systemhardware){
-            this.systemhardware = systemhardware;
+    public void setBeforecount( Long  beforecount){
+            this.beforecount = beforecount;
     }
 
-    public  String getSystemhardware(){
-            return systemhardware;
+    public  Long getBeforecount(){
+            return beforecount;
     }
 
-    public void setMemory( Integer  memory){
-            this.memory = memory;
+    public void setAftercount( Long  aftercount){
+            this.aftercount = aftercount;
     }
 
-    public  Integer getMemory(){
-            return memory;
+    public  Long getAftercount(){
+            return aftercount;
     }
 
-    public void setGlversion( String  glversion){
-            this.glversion = glversion;
+    public void setIcount( Long  icount){
+            this.icount = icount;
     }
 
-    public  String getGlversion(){
-            return glversion;
+    public  Long getIcount(){
+            return icount;
     }
 
-    public void setDeviceid( String  deviceid){
-            this.deviceid = deviceid;
+    public void setAddorreduce( Integer  addorreduce){
+            this.addorreduce = addorreduce;
     }
 
-    public  String getDeviceid(){
-            return deviceid;
+    public  Integer getAddorreduce(){
+            return addorreduce;
     }
 
-    public void setAccountname( String  accountname){
-            this.accountname = accountname;
+    public void setReason( String  reason){
+            this.reason = reason;
     }
 
-    public  String getAccountname(){
-            return accountname;
+    public  String getReason(){
+            return reason;
+    }
+
+    public void setSubreason( String  subreason){
+            this.subreason = subreason;
+    }
+
+    public  String getSubreason(){
+            return subreason;
     }
 
 
@@ -371,51 +380,52 @@ public class CncPlayerLogin implements CustomInterceptor{
         }
         String[] split = s.split("\\|");
         //parse
-        CncPlayerLogin cncPlayerLogin = new CncPlayerLogin();
-        cncPlayerLogin.setGameappid(split[0]);
-        cncPlayerLogin.setVopenid(split[1]);
-        cncPlayerLogin.setAccountcreatetime(split[2]);
-        cncPlayerLogin.setAccountregtime(split[3]);
-        cncPlayerLogin.setServertype(split[4]);
-        cncPlayerLogin.setIzoneareaid(split[5]);
-        cncPlayerLogin.setGamesvrid(split[6]);
-        cncPlayerLogin.setNowcoordinate(split[7]);
-        cncPlayerLogin.setVroleid(split[8]);
-        cncPlayerLogin.setVrolename(split[9]);
-        cncPlayerLogin.setRolenum(Integer.valueOf(split[10]));
-        cncPlayerLogin.setRoletype(split[11]);
-        cncPlayerLogin.setRolecreatetime(split[12]);
-        cncPlayerLogin.setIlevel(Integer.valueOf(split[13]));
-        cncPlayerLogin.setIviplevel(Integer.valueOf(split[14]));
-        cncPlayerLogin.setIrolece(Integer.valueOf(split[15]));
-        cncPlayerLogin.setHighestrolepower(Integer.valueOf(split[16]));
-        cncPlayerLogin.setPlayerfriendsnum(Integer.valueOf(split[17]));
-        cncPlayerLogin.setRechargesum(split[18]);
-        cncPlayerLogin.setIguildid(Integer.valueOf(split[19]));
-        cncPlayerLogin.setVguildname(split[20]);
-        cncPlayerLogin.setGuildgrade(split[21]);
-        cncPlayerLogin.setGuildclass(split[22]);
-        cncPlayerLogin.setPlatid(Integer.valueOf(split[23]));
-        cncPlayerLogin.setGamelanguage(split[24]);
-        cncPlayerLogin.setVclientid(split[25]);
-        cncPlayerLogin.setVclientipv6(split[26]);
-        cncPlayerLogin.setKillnum(split[27]);
-        cncPlayerLogin.setClientversion(split[28]);
-        cncPlayerLogin.setMoneyconfig(Integer.valueOf(split[29]));
-        cncPlayerLogin.setTransferornot(Integer.valueOf(split[30]));
-        cncPlayerLogin.setDteventtime(split[31]);
-        cncPlayerLogin.setSystemsoftware(split[32]);
-        cncPlayerLogin.setSystemhardware(split[33]);
-        cncPlayerLogin.setMemory(Integer.valueOf(split[34]));
-        cncPlayerLogin.setGlversion(split[35]);
-        cncPlayerLogin.setDeviceid(split[36]);
-        cncPlayerLogin.setAccountname(split[37]);
+        CncItemFlow cncItemFlow = new CncItemFlow();
+        cncItemFlow.setGameappid(split[0]);
+        cncItemFlow.setVopenid(split[1]);
+        cncItemFlow.setAccountcreatetime(split[2]);
+        cncItemFlow.setAccountregtime(split[3]);
+        cncItemFlow.setServertype(split[4]);
+        cncItemFlow.setIzoneareaid(split[5]);
+        cncItemFlow.setGamesvrid(split[6]);
+        cncItemFlow.setNowcoordinate(split[7]);
+        cncItemFlow.setVroleid(split[8]);
+        cncItemFlow.setVrolename(split[9]);
+        cncItemFlow.setRolenum(Integer.valueOf(split[10]));
+        cncItemFlow.setRoletype(split[11]);
+        cncItemFlow.setRolecreatetime(split[12]);
+        cncItemFlow.setIlevel(Integer.valueOf(split[13]));
+        cncItemFlow.setIviplevel(Integer.valueOf(split[14]));
+        cncItemFlow.setIrolece(Integer.valueOf(split[15]));
+        cncItemFlow.setHighestrolepower(Integer.valueOf(split[16]));
+        cncItemFlow.setPlayerfriendsnum(Integer.valueOf(split[17]));
+        cncItemFlow.setRechargesum(split[18]);
+        cncItemFlow.setIguildid(Integer.valueOf(split[19]));
+        cncItemFlow.setVguildname(split[20]);
+        cncItemFlow.setGuildgrade(split[21]);
+        cncItemFlow.setGuildclass(split[22]);
+        cncItemFlow.setPlatid(Integer.valueOf(split[23]));
+        cncItemFlow.setGamelanguage(split[24]);
+        cncItemFlow.setVclientid(split[25]);
+        cncItemFlow.setVclientipv6(split[26]);
+        cncItemFlow.setKillnum(split[27]);
+        cncItemFlow.setClientversion(split[28]);
+        cncItemFlow.setMoneyconfig(Integer.valueOf(split[29]));
+        cncItemFlow.setTransferornot(Integer.valueOf(split[30]));
+        cncItemFlow.setDteventtime(split[31]);
+        cncItemFlow.setIgoodsid(split[32]);
+        cncItemFlow.setBeforecount(Long.valueOf(split[33]));
+        cncItemFlow.setAftercount(Long.valueOf(split[34]));
+        cncItemFlow.setIcount(Long.valueOf(split[35]));
+        cncItemFlow.setAddorreduce(Integer.valueOf(split[36]));
+        cncItemFlow.setReason(split[37]);
+        cncItemFlow.setSubreason(split[38]);
         
         TaDataDo taDataDo = new TaDataDo();
-        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncPlayerLogin));
+        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncItemFlow));
         taDataDo.setPropertyObj(propertyObj);
 
-        if (CncPlayerLogin.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
+        if (CncItemFlow.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
             taDataDo.setType("user_set");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
@@ -428,7 +438,7 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
+            taDataDo.setEventName(propertyObj.getString("CncItemFlow"));
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -443,8 +453,8 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
-            taDataDo.setDistinctId("CncPlayerLogin");
+            taDataDo.setEventName(propertyObj.getString("CncItemFlow"));
+            taDataDo.setDistinctId("CncItemFlow");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
             } else {
@@ -458,8 +468,8 @@ public class CncPlayerLogin implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "CncPlayerLogin||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander_L szSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:11|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|65249|3001|b064267bb37b28b4093b59ccc98873aea972a3d2|james";
-        CncPlayerLogin xxx = new CncPlayerLogin();
+        String data = "CncItemFlow||204b1964eed64d979a68b7f16f818346|||null|1|1||32339158980|Commander_Fq QdxB|17|1|2022-08-08 10:59:52|1|0|4763|4763|0|xxx|0|xxx|xxx|xxx|2|en|58.34.218.250||0||0|0|2022-08-08 12:01:05|10350050|91|31|60|1|ICR_NONE|";
+        CncItemFlow xxx = new CncItemFlow();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
     }

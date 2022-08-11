@@ -28,11 +28,18 @@ public class GenUtils {
         XMLMetaService xmlMetaService = new XMLMetaService();
         xmlMetaService.init();
 
-        LinkedList<EntryDO> CncPlayerLoginEntrys = xmlMetaService.getAllEntrys("CncPlayerLogin.xml");
-
-        System.out.println(JSON.toJSONString(CncPlayerLoginEntrys));
-        GenUtils.generatorCode("CncPlayerLogin", CncPlayerLoginEntrys, null);
-
+        File[] files = (new File("src/main/resources")).listFiles();
+        for (File file : files) {
+            if (file.getName().endsWith(".xml") &&
+                    !file.getPath().contains("/head/") && !file.getPath().contains("code/")) {
+                try {
+                    LinkedList<EntryDO> entries = xmlMetaService.getAllEntries(file.getName());
+                    GenUtils.generatorCode(file.getName().replace(".xml",""), entries, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 
@@ -42,8 +49,8 @@ public class GenUtils {
         Configuration config = getConfig();
         StructDO struct = new StructDO();
         struct.setStructName(structName);
-        //表名转换成Java类名
-        String className = tableToJava(struct.getStructName());
+        //Java类名
+        String className = structName;//tableToJava(struct.getStructName());
         struct.setClassName(className);
         struct.setClassname(StringUtils.uncapitalize(className));
 

@@ -15,8 +15,8 @@ import java.util.Date;
  * @author felix
  * @email felix@thinkingdata
  */
-public class CncPlayerLogin implements CustomInterceptor{
-    private static final Logger logger = LoggerFactory.getLogger(CncPlayerLogin.class);
+public class CncPlayerLogout implements CustomInterceptor{
+    private static final Logger logger = LoggerFactory.getLogger(CncPlayerLogout.class);
 
     private  String  gameappid;
     private  String  vopenid;
@@ -55,6 +55,8 @@ public class CncPlayerLogin implements CustomInterceptor{
     private  Integer  memory;
     private  String  glversion;
     private  String  deviceid;
+    private  Long  onlinetime;
+    private  String  reason;
     private  String  accountname;
 
 
@@ -354,6 +356,22 @@ public class CncPlayerLogin implements CustomInterceptor{
             return deviceid;
     }
 
+    public void setOnlinetime( Long  onlinetime){
+            this.onlinetime = onlinetime;
+    }
+
+    public  Long getOnlinetime(){
+            return onlinetime;
+    }
+
+    public void setReason( String  reason){
+            this.reason = reason;
+    }
+
+    public  String getReason(){
+            return reason;
+    }
+
     public void setAccountname( String  accountname){
             this.accountname = accountname;
     }
@@ -371,51 +389,53 @@ public class CncPlayerLogin implements CustomInterceptor{
         }
         String[] split = s.split("\\|");
         //parse
-        CncPlayerLogin cncPlayerLogin = new CncPlayerLogin();
-        cncPlayerLogin.setGameappid(split[0]);
-        cncPlayerLogin.setVopenid(split[1]);
-        cncPlayerLogin.setAccountcreatetime(split[2]);
-        cncPlayerLogin.setAccountregtime(split[3]);
-        cncPlayerLogin.setServertype(split[4]);
-        cncPlayerLogin.setIzoneareaid(split[5]);
-        cncPlayerLogin.setGamesvrid(split[6]);
-        cncPlayerLogin.setNowcoordinate(split[7]);
-        cncPlayerLogin.setVroleid(split[8]);
-        cncPlayerLogin.setVrolename(split[9]);
-        cncPlayerLogin.setRolenum(Integer.valueOf(split[10]));
-        cncPlayerLogin.setRoletype(split[11]);
-        cncPlayerLogin.setRolecreatetime(split[12]);
-        cncPlayerLogin.setIlevel(Integer.valueOf(split[13]));
-        cncPlayerLogin.setIviplevel(Integer.valueOf(split[14]));
-        cncPlayerLogin.setIrolece(Integer.valueOf(split[15]));
-        cncPlayerLogin.setHighestrolepower(Integer.valueOf(split[16]));
-        cncPlayerLogin.setPlayerfriendsnum(Integer.valueOf(split[17]));
-        cncPlayerLogin.setRechargesum(split[18]);
-        cncPlayerLogin.setIguildid(Integer.valueOf(split[19]));
-        cncPlayerLogin.setVguildname(split[20]);
-        cncPlayerLogin.setGuildgrade(split[21]);
-        cncPlayerLogin.setGuildclass(split[22]);
-        cncPlayerLogin.setPlatid(Integer.valueOf(split[23]));
-        cncPlayerLogin.setGamelanguage(split[24]);
-        cncPlayerLogin.setVclientid(split[25]);
-        cncPlayerLogin.setVclientipv6(split[26]);
-        cncPlayerLogin.setKillnum(split[27]);
-        cncPlayerLogin.setClientversion(split[28]);
-        cncPlayerLogin.setMoneyconfig(Integer.valueOf(split[29]));
-        cncPlayerLogin.setTransferornot(Integer.valueOf(split[30]));
-        cncPlayerLogin.setDteventtime(split[31]);
-        cncPlayerLogin.setSystemsoftware(split[32]);
-        cncPlayerLogin.setSystemhardware(split[33]);
-        cncPlayerLogin.setMemory(Integer.valueOf(split[34]));
-        cncPlayerLogin.setGlversion(split[35]);
-        cncPlayerLogin.setDeviceid(split[36]);
-        cncPlayerLogin.setAccountname(split[37]);
+        CncPlayerLogout cncPlayerLogout = new CncPlayerLogout();
+        cncPlayerLogout.setGameappid(split[0]);
+        cncPlayerLogout.setVopenid(split[1]);
+        cncPlayerLogout.setAccountcreatetime(split[2]);
+        cncPlayerLogout.setAccountregtime(split[3]);
+        cncPlayerLogout.setServertype(split[4]);
+        cncPlayerLogout.setIzoneareaid(split[5]);
+        cncPlayerLogout.setGamesvrid(split[6]);
+        cncPlayerLogout.setNowcoordinate(split[7]);
+        cncPlayerLogout.setVroleid(split[8]);
+        cncPlayerLogout.setVrolename(split[9]);
+        cncPlayerLogout.setRolenum(Integer.valueOf(split[10]));
+        cncPlayerLogout.setRoletype(split[11]);
+        cncPlayerLogout.setRolecreatetime(split[12]);
+        cncPlayerLogout.setIlevel(Integer.valueOf(split[13]));
+        cncPlayerLogout.setIviplevel(Integer.valueOf(split[14]));
+        cncPlayerLogout.setIrolece(Integer.valueOf(split[15]));
+        cncPlayerLogout.setHighestrolepower(Integer.valueOf(split[16]));
+        cncPlayerLogout.setPlayerfriendsnum(Integer.valueOf(split[17]));
+        cncPlayerLogout.setRechargesum(split[18]);
+        cncPlayerLogout.setIguildid(Integer.valueOf(split[19]));
+        cncPlayerLogout.setVguildname(split[20]);
+        cncPlayerLogout.setGuildgrade(split[21]);
+        cncPlayerLogout.setGuildclass(split[22]);
+        cncPlayerLogout.setPlatid(Integer.valueOf(split[23]));
+        cncPlayerLogout.setGamelanguage(split[24]);
+        cncPlayerLogout.setVclientid(split[25]);
+        cncPlayerLogout.setVclientipv6(split[26]);
+        cncPlayerLogout.setKillnum(split[27]);
+        cncPlayerLogout.setClientversion(split[28]);
+        cncPlayerLogout.setMoneyconfig(Integer.valueOf(split[29]));
+        cncPlayerLogout.setTransferornot(Integer.valueOf(split[30]));
+        cncPlayerLogout.setDteventtime(split[31]);
+        cncPlayerLogout.setSystemsoftware(split[32]);
+        cncPlayerLogout.setSystemhardware(split[33]);
+        cncPlayerLogout.setMemory(Integer.valueOf(split[34]));
+        cncPlayerLogout.setGlversion(split[35]);
+        cncPlayerLogout.setDeviceid(split[36]);
+        cncPlayerLogout.setOnlinetime(Long.valueOf(split[37]));
+        cncPlayerLogout.setReason(split[38]);
+        cncPlayerLogout.setAccountname(split[39]);
         
         TaDataDo taDataDo = new TaDataDo();
-        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncPlayerLogin));
+        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(cncPlayerLogout));
         taDataDo.setPropertyObj(propertyObj);
 
-        if (CncPlayerLogin.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
+        if (CncPlayerLogout.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
             taDataDo.setType("user_set");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
@@ -428,7 +448,7 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
+            taDataDo.setEventName(propertyObj.getString("CncPlayerLogout"));
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -443,8 +463,8 @@ public class CncPlayerLogin implements CustomInterceptor{
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName(propertyObj.getString("CncPlayerLogin"));
-            taDataDo.setDistinctId("CncPlayerLogin");
+            taDataDo.setEventName(propertyObj.getString("CncPlayerLogout"));
+            taDataDo.setDistinctId("CncPlayerLogout");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
             } else {
@@ -458,8 +478,8 @@ public class CncPlayerLogin implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "CncPlayerLogin||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander_L szSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:11|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|65249|3001|b064267bb37b28b4093b59ccc98873aea972a3d2|james";
-        CncPlayerLogin xxx = new CncPlayerLogin();
+        String data = "CncPlayerLogout||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander _LszSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:42|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|65249|3001|b064267bb37b28b4093b59ccc98873aea972a3d2|31|1|james";
+        CncPlayerLogout xxx = new CncPlayerLogout();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
     }
