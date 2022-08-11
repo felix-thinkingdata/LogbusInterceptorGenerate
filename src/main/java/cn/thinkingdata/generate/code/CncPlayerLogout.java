@@ -478,7 +478,7 @@ public class CncPlayerLogout implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "";
+        String data = "CncPlayerLogout||5c42e476e00d433bb7d61c9fe40723c9|||null|1|1||32089626189|Commander _LszSP3|5|1|2022-08-05 06:31:38|25|0|67667086|67667086|0|xxx|0|xxx|xxx|xxx|2|zh|58.34.218.250||0||0|0|2022-08-08 12:01:42|Windows 10 (10.0.19041) 64bit|OptiPlex 7080 (Dell Inc.)|65249|3001|b064267bb37b28b4093b59ccc98873aea972a3d2|31|1|james";
         CncPlayerLogout xxx = new CncPlayerLogout();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

@@ -198,7 +198,7 @@ public class CncOnlineCnt implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "";
+        String data = "CncOnlineCnt|null||2022-08-04 04:12:46|373889|0|xxx|xxx|2022-08-08 12:04:15||1659960255584|0|0";
         CncOnlineCnt xxx = new CncOnlineCnt();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

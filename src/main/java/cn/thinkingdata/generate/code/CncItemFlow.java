@@ -468,7 +468,7 @@ public class CncItemFlow implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "";
+        String data = "CncItemFlow||204b1964eed64d979a68b7f16f818346|||null|1|1||32339158980|Commander_Fq QdxB|17|1|2022-08-08 10:59:52|1|0|4763|4763|0|xxx|0|xxx|xxx|xxx|2|en|58.34.218.250||0||0|0|2022-08-08 12:01:05|10350050|91|31|60|1|ICR_NONE|";
         CncItemFlow xxx = new CncItemFlow();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
