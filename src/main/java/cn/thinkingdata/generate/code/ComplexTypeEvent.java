@@ -13,26 +13,40 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 /**
- * @author ${author}
- * @email ${email}
+ * @author felix
+ * @email felix@thinkingdata
  */
-public class ${className} implements CustomInterceptor{
-    private static final Logger logger = LoggerFactory.getLogger(${className}.class);
+public class ComplexTypeEvent implements CustomInterceptor{
+    private static final Logger logger = LoggerFactory.getLogger(ComplexTypeEvent.class);
 
-#foreach ($column in $columns)
-    private  $column.attrType  $column.attrname;
-#end
+    private  String  dteventtime;
+    private  JSONObject  objecttype;
+    private  JSONArray  objectarraytype;
 
-#foreach ($column in $columns)
 
-    public void set${column.attrName}( $column.attrType  $column.attrname){
-            this.$column.attrname = $column.attrname;
+    public void setDteventtime( String  dteventtime){
+            this.dteventtime = dteventtime;
     }
 
-    public  $column.attrType get${column.attrName}(){
-            return $column.attrname;
+    public  String getDteventtime(){
+            return dteventtime;
     }
-#end
+
+    public void setObjecttype( JSONObject  objecttype){
+            this.objecttype = objecttype;
+    }
+
+    public  JSONObject getObjecttype(){
+            return objecttype;
+    }
+
+    public void setObjectarraytype( JSONArray  objectarraytype){
+            this.objectarraytype = objectarraytype;
+    }
+
+    public  JSONArray getObjectarraytype(){
+            return objectarraytype;
+    }
 
 
     @Override
@@ -43,30 +57,16 @@ public class ${className} implements CustomInterceptor{
         }
         String[] split = s.split("\\|");
         //parse
-        ${className} ${classname} = new ${className}();
-        #foreach ($column in $columns)
-#if(${column.attrType}  == 'String')
-${classname}.set${column.attrName}(split[${column.index}]);
-#elseif (${column.attrType}  == 'Integer')
-${classname}.set${column.attrName}(Integer.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Long')
-${classname}.set${column.attrName}(Long.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Date')
-${classname}.set${column.attrName}(DateUtil.parseDateString(split[${column.index}]));
-#elseif (${column.attrType}  == 'JSONObject')
-${classname}.set${column.attrName}(JSONObject.parseObject(split[${column.index}]));
-#elseif (${column.attrType}  == 'JSONArray')
-${classname}.set${column.attrName}(JSONArray.parseArray(split[${column.index}]));
-#else
-${classname}.set${column.attrName}(split[${column.index}]);
-#end
-        #end
-
+        ComplexTypeEvent complexTypeEvent = new ComplexTypeEvent();
+        complexTypeEvent.setDteventtime(split[0]);
+        complexTypeEvent.setObjecttype(JSONObject.parseObject(split[1]));
+        complexTypeEvent.setObjectarraytype(JSONArray.parseArray(split[2]));
+        
         TaDataDo taDataDo = new TaDataDo();
-        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(${classname}));
+        JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(complexTypeEvent));
         taDataDo.setPropertyObj(propertyObj);
 
-        if (${className}.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
+        if (ComplexTypeEvent.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
             taDataDo.setType("user_set");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
@@ -79,7 +79,7 @@ ${classname}.set${column.attrName}(split[${column.index}]);
             }
         } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
             taDataDo.setType("track");
-            taDataDo.setEventName("${className}");
+            taDataDo.setEventName("ComplexTypeEvent");
             if(propertyObj.containsKey("VOpenID".toLowerCase())){
                 taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
             }
@@ -94,8 +94,8 @@ ${classname}.set${column.attrName}(split[${column.index}]);
             }
         } else {
             taDataDo.setType("track");
-            taDataDo.setEventName("${className}");
-            taDataDo.setDistinctId("${className}");
+            taDataDo.setEventName("ComplexTypeEvent");
+            taDataDo.setDistinctId("ComplexTypeEvent");
             if(propertyObj.containsKey("DtEventTime".toLowerCase())){
                 taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
             } else {
@@ -109,8 +109,8 @@ ${classname}.set${column.attrName}(split[${column.index}]);
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "";
-        ${className} xxx = new ${className}();
+        String data = "ComplexTypeEvent|2022-08-05 06:31:38|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]";
+        ComplexTypeEvent xxx = new ComplexTypeEvent();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
     }
