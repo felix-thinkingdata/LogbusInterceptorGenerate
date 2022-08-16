@@ -10,7 +10,9 @@ import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author felix
@@ -22,6 +24,8 @@ public class ComplexTypeEvent implements CustomInterceptor{
     private  String  dteventtime;
     private  Float  floattype;
     private  Double  doubletype;
+    private  List<String>  stringarraytype;
+    private  List<String>  intarraytype;
     private  JSONObject  objecttype;
     private  JSONArray  objectarraytype;
 
@@ -48,6 +52,22 @@ public class ComplexTypeEvent implements CustomInterceptor{
 
     public  Double getDoubletype(){
             return doubletype;
+    }
+
+    public void setStringarraytype( List<String>  stringarraytype){
+            this.stringarraytype = stringarraytype;
+    }
+
+    public  List<String> getStringarraytype(){
+            return stringarraytype;
+    }
+
+    public void setIntarraytype( List<String>  intarraytype){
+            this.intarraytype = intarraytype;
+    }
+
+    public  List<String> getIntarraytype(){
+            return intarraytype;
     }
 
     public void setObjecttype( JSONObject  objecttype){
@@ -79,8 +99,10 @@ public class ComplexTypeEvent implements CustomInterceptor{
         complexTypeEvent.setDteventtime(split[0]);
         complexTypeEvent.setFloattype(Float.valueOf(split[1]));
         complexTypeEvent.setDoubletype(Double.valueOf(split[2]));
-        complexTypeEvent.setObjecttype(JSONObject.parseObject(split[3]));
-        complexTypeEvent.setObjectarraytype(JSONArray.parseArray(split[4]));
+        complexTypeEvent.setStringarraytype(Arrays.asList(split[3].split(",")));
+        complexTypeEvent.setIntarraytype(Arrays.asList(split[4].split(",")));
+        complexTypeEvent.setObjecttype(JSONObject.parseObject(split[5]));
+        complexTypeEvent.setObjectarraytype(JSONArray.parseArray(split[6]));
         
         TaDataDo taDataDo = new TaDataDo();
         JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(complexTypeEvent));
@@ -129,7 +151,7 @@ public class ComplexTypeEvent implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "";
+        String data = "ComplexTypeEvent|2022-08-05 06:31:38|0.5|0.888|abc,def,gh|1,2,3|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]|1660537266｜1660537266179";
         ComplexTypeEvent xxx = new ComplexTypeEvent();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

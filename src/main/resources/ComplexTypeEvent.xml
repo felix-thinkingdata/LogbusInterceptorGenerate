@@ -2,7 +2,9 @@
 <struct name="ComplexTypeEvent" filter="0" version="1" desc="复杂类型示例">
     <entry name="DtEventTime" type="string" size="32" desc="事件时间"/>
     <entry name="FloatType" type="float" size="32" desc="float示例"/>
-    <entry name="DoubleType" type="double" size="32" desc="double示例"/>
+    <entry name="DoubleType" type="double" size="64" desc="double示例"/>
+    <entry name="StringArrayType" type="array_string" size="2048" desc="字符串数组示例"/>
+    <entry name="IntArrayType" type="array_int" size="2048" desc="整型数组示例"/>
     <entry name="ObjectType" type="object" size="2048" desc="对象类型示例"/>
     <entry name="ObjectArrayType" type="object_array" size="2048" desc="对象组类型示例"/>
 </struct>
