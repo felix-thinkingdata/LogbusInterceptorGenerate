@@ -51,6 +51,10 @@ ${classname}.set${column.attrName}(split[${column.index}]);
 ${classname}.set${column.attrName}(Integer.valueOf(split[${column.index}]));
 #elseif (${column.attrType}  == 'Long')
 ${classname}.set${column.attrName}(Long.valueOf(split[${column.index}]));
+#elseif (${column.attrType}  == 'Float')
+${classname}.set${column.attrName}(Float.valueOf(split[${column.index}]));
+#elseif (${column.attrType}  == 'Double')
+${classname}.set${column.attrName}(Double.valueOf(split[${column.index}]));
 #elseif (${column.attrType}  == 'Date')
 ${classname}.set${column.attrName}(DateUtil.parseDateString(split[${column.index}]));
 #elseif (${column.attrType}  == 'JSONObject')

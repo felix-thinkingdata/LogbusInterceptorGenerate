@@ -20,6 +20,8 @@ public class ComplexTypeEvent implements CustomInterceptor{
     private static final Logger logger = LoggerFactory.getLogger(ComplexTypeEvent.class);
 
     private  String  dteventtime;
+    private  Float  floattype;
+    private  Double  doubletype;
     private  JSONObject  objecttype;
     private  JSONArray  objectarraytype;
 
@@ -30,6 +32,22 @@ public class ComplexTypeEvent implements CustomInterceptor{
 
     public  String getDteventtime(){
             return dteventtime;
+    }
+
+    public void setFloattype( Float  floattype){
+            this.floattype = floattype;
+    }
+
+    public  Float getFloattype(){
+            return floattype;
+    }
+
+    public void setDoubletype( Double  doubletype){
+            this.doubletype = doubletype;
+    }
+
+    public  Double getDoubletype(){
+            return doubletype;
     }
 
     public void setObjecttype( JSONObject  objecttype){
@@ -59,8 +77,10 @@ public class ComplexTypeEvent implements CustomInterceptor{
         //parse
         ComplexTypeEvent complexTypeEvent = new ComplexTypeEvent();
         complexTypeEvent.setDteventtime(split[0]);
-        complexTypeEvent.setObjecttype(JSONObject.parseObject(split[1]));
-        complexTypeEvent.setObjectarraytype(JSONArray.parseArray(split[2]));
+        complexTypeEvent.setFloattype(Float.valueOf(split[1]));
+        complexTypeEvent.setDoubletype(Double.valueOf(split[2]));
+        complexTypeEvent.setObjecttype(JSONObject.parseObject(split[3]));
+        complexTypeEvent.setObjectarraytype(JSONArray.parseArray(split[4]));
         
         TaDataDo taDataDo = new TaDataDo();
         JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(complexTypeEvent));
@@ -109,7 +129,7 @@ public class ComplexTypeEvent implements CustomInterceptor{
 
     public static void main(String[] args) {
         //事件测试数据
-        String data = "ComplexTypeEvent|2022-08-05 06:31:38|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]";
+        String data = "";
         ComplexTypeEvent xxx = new ComplexTypeEvent();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
