@@ -18,25 +18,29 @@ public class YorhaTlogInterceptor implements CustomInterceptor {
                 log = obj.getString("log");
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
-        String className = log.substring(0, s.indexOf("|"));
+        if (log.endsWith("\n")) {
+            log = log.substring(0, log.length()-1);
+        }
+
+        String className = log.substring(0, log.indexOf("|"));
         switch (className) {
             case "CncPlayerLogin":
-                return (new CncPlayerLogin()).transFrom(s, s1);
+                return (new CncPlayerLogin()).transFrom(log, s1);
             case "CncPlayerLogout":
-                return (new CncPlayerLogout()).transFrom(s, s1);
+                return (new CncPlayerLogout()).transFrom(log, s1);
             case "CncItemFlow":
-                return (new CncItemFlow()).transFrom(s, s1);
+                return (new CncItemFlow()).transFrom(log, s1);
             case "CncOnlineCnt":
-                return (new CncOnlineCnt()).transFrom(s, s1);
+                return (new CncOnlineCnt()).transFrom(log, s1);
             case "CncGuildExpansion":
-                return (new CncGuildExpansion()).transFrom(s, s1);
+                return (new CncGuildExpansion()).transFrom(log, s1);
             case "UserSnapshot":
-                return (new UserSnapshot()).transFrom(s, s1);
+                return (new UserSnapshot()).transFrom(log, s1);
             case "ComplexTypeEvent":
-                return (new ComplexTypeEvent().transFrom(s, s1));
+                return (new ComplexTypeEvent().transFrom(log, s1));
             default:
                 return null;
         }
@@ -53,7 +57,7 @@ public class YorhaTlogInterceptor implements CustomInterceptor {
     }
 
     public static void main(String[] args) {
-        String data = "{\"@timestamp\":1660321091.944,\"logfilename\":\"qlog_flow_log\",\"log\":\"ComplexTypeEvent|2022-08-05 06:31:38|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]\",\"dir\":\"204.1.2.0\",\"filepath\":\"/var/log/containers/204.1.2.0/qlog_flow_log\",\"time\":\"2022-08-12 16:18:11.944\"}";
+        String data = "{\"@timestamp\":1660321091.944,\"logfilename\":\"qlog_flow_log\",\"log\":\"ComplexTypeEvent|2022-08-05 06:31:38|0.5|0.888|a,b,c|1,2,3|{\\\"key\\\":\\\"value\\\"}|[{\\\"key1\\\":\\\"value1\\\",\\\"key2\\\":\\\"value2\\\"},{\\\"key1\\\":\\\"value3\\\",\\\"key2\\\":\\\"value4\\\"}]|1660537266｜1660537266179\\n\",\"dir\":\"204.1.2.0\",\"filepath\":\"/var/log/containers/204.1.2.0/qlog_flow_log\",\"time\":\"2022-08-12 16:18:11.944\"}";
         YorhaTlogInterceptor xxx = new YorhaTlogInterceptor();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));
