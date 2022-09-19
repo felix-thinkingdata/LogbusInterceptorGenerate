@@ -21,13 +21,21 @@ import java.util.List;
 public class ${className} implements CustomInterceptor{
     private static final Logger logger = LoggerFactory.getLogger(${className}.class);
 
+    private String offset;
 #foreach ($column in $columns)
     private  $column.attrType  $column.attrname;
 #end
 
+    public void setOffset(String offset){
+        this.offset = offset;
+        }
+
+    public  String getOffset(){
+        return offset;
+        }
 #foreach ($column in $columns)
 
-    public void set${column.attrName}( $column.attrType  $column.attrname){
+    public void set${column.attrName}($column.attrType $column.attrname){
             this.$column.attrname = $column.attrname;
     }
 
@@ -39,76 +47,29 @@ public class ${className} implements CustomInterceptor{
 
     @Override
     public TaDataDo transFrom(String s,String s1) {
-        s = s.substring(s.indexOf("|")+1);
+        s = s.substring(s.indexOf("|"));
         if (s.endsWith("|")) {
             s = s+" ";
         }
         String[] split = s.split("\\|");
         //parse
         ${className} ${classname} = new ${className}();
+        ${classname}.setOffset(split[0]);
         #foreach ($column in $columns)
-#if(${column.attrType}  == 'String')
-${classname}.set${column.attrName}(split[${column.index}]);
-#elseif (${column.attrType}  == 'Integer')
-${classname}.set${column.attrName}(Integer.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Long')
-${classname}.set${column.attrName}(Long.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Float')
-${classname}.set${column.attrName}(Float.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Double')
-${classname}.set${column.attrName}(Double.valueOf(split[${column.index}]));
-#elseif (${column.attrType}  == 'Date')
-${classname}.set${column.attrName}(DateUtil.parseDateString(split[${column.index}]));
-#elseif (${column.attrType}  == 'List<String>')
-${classname}.set${column.attrName}(Arrays.asList(split[${column.index}].split(",")));
-#elseif (${column.attrType}  == 'JSONObject')
-${classname}.set${column.attrName}(JSONObject.parseObject(split[${column.index}]));
-#elseif (${column.attrType}  == 'JSONArray')
-${classname}.set${column.attrName}(JSONArray.parseArray(split[${column.index}]));
-#else
-${classname}.set${column.attrName}(split[${column.index}]);
-#end
+${classname}.set${column.attrName}(split[${velocityCount}]);
         #end
 
         TaDataDo taDataDo = new TaDataDo();
         JSONObject propertyObj = JSON.parseObject(JSON.toJSONString(${classname}));
         taDataDo.setPropertyObj(propertyObj);
 
-        if (${className}.class.getSimpleName().equalsIgnoreCase("UserSnapshot")) {
-            taDataDo.setType("user_set");
-            if(propertyObj.containsKey("VOpenID".toLowerCase())){
-                taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
-            }
-            if(propertyObj.containsKey("VRoleId".toLowerCase())){
-                taDataDo.setAccountId(propertyObj.getString("VRoleId".toLowerCase()));
-            }
-            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
-                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
-            }
-        } else if (propertyObj.containsKey("VOpenID".toLowerCase())){
-            taDataDo.setType("track");
-            taDataDo.setEventName("${className}");
-            if(propertyObj.containsKey("VOpenID".toLowerCase())){
-                taDataDo.setDistinctId(propertyObj.getString("VOpenID".toLowerCase()));
-            }
-            if(propertyObj.containsKey("VRoleId".toLowerCase())){
-                taDataDo.setAccountId(propertyObj.getString("VRoleId".toLowerCase()));
-            }
-            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
-                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
-            }
-            if(propertyObj.containsKey("VClientId".toLowerCase())){
-                taDataDo.setIp(propertyObj.getString("VClientId".toLowerCase()));
-            }
+        taDataDo.setType("track");
+        taDataDo.setEventName("${className}".toLowerCase());
+        taDataDo.setAccountId(propertyObj.getString("role_id".toLowerCase()));
+        if(propertyObj.containsKey("dteventtime".toLowerCase())){
+            taDataDo.setTime(propertyObj.getDate("dteventtime".toLowerCase()));
         } else {
-            taDataDo.setType("track");
-            taDataDo.setEventName("${className}");
-            taDataDo.setDistinctId("${className}");
-            if(propertyObj.containsKey("DtEventTime".toLowerCase())){
-                taDataDo.setTime(propertyObj.getDate("DtEventTime".toLowerCase()));
-            } else {
-                taDataDo.setTime(new Date());
-            }
+            taDataDo.setTime(new Date());
         }
 
         return taDataDo;
