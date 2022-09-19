@@ -23,7 +23,7 @@ public class ${className} implements CustomInterceptor{
 
     private String offset;
 #foreach ($column in $columns)
-    private  $column.attrType  $column.attrname;
+    private  $column.attrType  $column.attrname.toLowerCase();
 #end
 
     public void setOffset(String offset){
@@ -36,11 +36,11 @@ public class ${className} implements CustomInterceptor{
 #foreach ($column in $columns)
 
     public void set${column.attrName}($column.attrType $column.attrname){
-            this.$column.attrname = $column.attrname;
+            this.$column.attrname.toLowerCase() = $column.attrname.toLowerCase();
     }
 
     public  $column.attrType get${column.attrName}(){
-            return $column.attrname;
+            return $column.attrname.toLowerCase();
     }
 #end
 
