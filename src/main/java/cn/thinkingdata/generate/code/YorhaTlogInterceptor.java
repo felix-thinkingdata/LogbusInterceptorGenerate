@@ -53,7 +53,7 @@ public class YorhaTlogInterceptor implements CustomInterceptor {
     }
 
     public static void main(String[] args) {
-        String data = "{\"@timestamp\":1660321091.944,\"logfilename\":\"qlog_flow_log\",\"log\":\"ComplexTypeEvent|2022-08-05 06:31:38|0.5|0.888|a,b,c|1,2,3|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]|1660537266｜1660537266179\\n\",\"dir\":\"204.1.2.0\",\"filepath\":\"/var/log/containers/204.1.2.0/qlog_flow_log\",\"time\":\"2022-08-12 16:18:11.944\"}";
+        String data = "{\"@timestamp\":1660321091.944,\"logfilename\":\"qlog_flow_log\",\"log\":\"ComplexTypeEvent|2022-08-05 06:31:38|0.5|0.888|\"a\",\"b\",\"c\"|1,2,3|{\"key\":\"value\"}|[{\"key1\":\"value1\",\"key2\":\"value2\"},{\"key1\":\"value3\",\"key2\":\"value4\"}]|1660537266｜1660537266179\\n\",\"dir\":\"204.1.2.0\",\"filepath\":\"/var/log/containers/204.1.2.0/qlog_flow_log\",\"time\":\"2022-08-12 16:18:11.944\"}";
         YorhaTlogInterceptor xxx = new YorhaTlogInterceptor();
         TaDataDo taDataDo =  xxx.transFrom(data,"");
         System.out.println(JSON.toJSONString(taDataDo));

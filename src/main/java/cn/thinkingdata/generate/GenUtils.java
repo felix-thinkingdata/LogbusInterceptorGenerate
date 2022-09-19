@@ -18,20 +18,20 @@ import org.apache.velocity.app.Velocity;
 
 import java.io.File;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class GenUtils {
     public static void main(String[] args) throws Exception {
         XMLMetaService xmlMetaService = new XMLMetaService();
+
+        //每个文件对应一个struct
         xmlMetaService.init();
 
         File[] files = (new File("src/main/resources")).listFiles();
         for (File file : files) {
             if (file.getName().endsWith(".xml") &&
-                    !file.getPath().contains("/head/") && !file.getPath().contains("code/")) {
+                    !file.getPath().contains("/head/") && !file.getPath().contains("code/")
+                    && !file.getPath().contains("template/")) {
                 try {
                     LinkedList<EntryDO> entries = xmlMetaService.getAllEntries(file.getName());
                     GenUtils.generatorCode(file.getName().replace(".xml",""), entries, null);
@@ -41,6 +41,15 @@ public class GenUtils {
             }
         }
 
+        //解析整个tlog xml 配置文件
+        try {
+            Map<String, LinkedList<EntryDO>> entriesMap = xmlMetaService.getEntriesListFromFile("template/Nova20220902.xml");
+            for (String key : entriesMap.keySet()) {
+                GenUtils.generatorCode(key, entriesMap.get(key), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void generatorCode(String structName,
