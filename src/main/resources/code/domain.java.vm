@@ -47,10 +47,11 @@ public class ${className} implements CustomInterceptor{
 
     @Override
     public TaDataDo transFrom(String s,String s1) {
-        s = s.substring(s.indexOf("|"));
-        if (s.endsWith("|")) {
-            s = s+" ";
-        }
+        //s = s.substring(s.indexOf("|"));
+##        if (s.endsWith("|")) {
+##            s = s+" ";
+##        }
+        s = s + "|||||||||||||||||||||||||||| ";
         String[] split = s.split("\\|");
         //parse
         ${className} ${classname} = new ${className}();

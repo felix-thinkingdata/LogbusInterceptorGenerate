@@ -66,7 +66,8 @@ public class GenUtils {
         for (EntryDO columnDO : entryDOS) {
 
             //列名转换成Java属性名
-            String attrName = columnToJava(columnDO.getColumnName());
+            //String attrName = columnToJava(columnDO.getColumnName());
+            String attrName = columnDO.getColumnName();
             columnDO.setAttrName(attrName);
             columnDO.setAttrname(StringUtils.uncapitalize(attrName));
             //列的数据类型，转换成Java类型
